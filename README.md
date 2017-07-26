@@ -1,10 +1,6 @@
 # Molecule
 Create and testing ansible role using Molecule and serverspec
 
-## Introduction
-I have post about this repo in my blog. So basicly this is just sample code for experiment.  
-Here [my url post](https://tuanpembual.wordpress.com/2017/04/03/molecule-automate-testing-tool-untuk-ansible-roles) about this molecule in my blog.
-
 ## Dependency
 * virtualbox
 * vagrant
@@ -31,12 +27,12 @@ $ pip install molecule
 `$ bundle install`  
 
 ## Addition setup
-We using ubuntu xeniau64, so please edit platform section in molecule.yml  
+We using debian jessie64, so please edit platform section in molecule.yml  
 ```
 platforms:
-  - name: ubuntu/xenial64
-	box: ubuntu/xenial64
-	box_url: https://vagrantcloud.com/ubuntu/boxes/xenial64/versions/16.04/providers/virtualbox.box
+    - name: debian/jessie64
+      box: debian/jessie64
+      box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.7.0/providers/virtualbox.box
 ```
 
 ## Testing
