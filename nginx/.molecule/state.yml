@@ -1,0 +1,29 @@
+---
+converged: true
+created: true
+default_platform: null
+default_provider: null
+driver: vagrant
+driver_config:
+  current_platform: debian/jessie64
+  current_provider: virtualbox
+  instances:
+  - ansible_groups:
+    - group1
+    name: nginx
+    vm_name: nginx
+  platforms:
+  - box: debian/jessie64
+    box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.7.0/providers/virtualbox.box
+    name: debian/jessie64
+  providers:
+  - name: virtualbox
+    options:
+      cpus: 2
+      memory: 512
+    type: virtualbox
+hosts:
+  nginx:
+    groups:
+    - group1
+multiple_platforms: null

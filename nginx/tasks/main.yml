@@ -1,0 +1,49 @@
+---
+# tasks file for nginx
+- name: install apt-transport-https
+  apt: name=apt-transport-https update_cache=yes
+  become: yes
+
+- name: install packages
+  apt: name={{ item }} update_cache=yes force=yes
+  with_items:
+    - nginx
+    - curl
+    - git
+    - npm
+    - net-tools
+    - nodejs
+  become: yes
+  notify:
+    - restart nginx
+
+# Clone repository
+- name: clone repositories
+  git:
+   repo: "https://github.com/tuanpembual/blankon-linux-static-web.git"
+   dest: "home/hello"
+   version: "v1.0"
+
+# Symlink nodejs
+- name: Symplink nodejs
+  file:
+    src: /usr/bin/nodejs
+    dest: /usr/bin/node
+    owner: root
+    group: root
+    state: link
+
+# Install Npm
+- name: Install NPM
+  npm:
+    path: "home/hello"
+
+# Npm run build
+- name: Npm run build
+  command: home/hello npm run build
+  args:
+    chdir: "home/hello/dist"
+    creates: "home/hello/dist"
+
+#Mengganti isi sites-available nginx
+

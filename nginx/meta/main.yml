@@ -1,0 +1,16 @@
+galaxy_info:
+  author: Ervinismu
+  description: Ansible to deploy Blankon
+  company: BlankOn Project
+
+  license: license (MIT)
+  min_ansible_version: 2.2
+
+  platforms:
+  - name: debian
+    versions:
+    - jessie
+
+  galaxy_tags: []
+
+dependencies: []
