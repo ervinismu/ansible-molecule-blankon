@@ -7,7 +7,7 @@ vagrant:
   platforms:
     - name: debian/jessie64
       box: debian/jessie64
-      box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.7.0/providers/virtualbox.box
+      box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.8.0/providers/virtualbox.box
   providers:
     - name: virtualbox
       type: virtualbox

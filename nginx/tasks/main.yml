@@ -4,15 +4,26 @@
   apt: name=apt-transport-https update_cache=yes
   become: yes
 
+- name: Add NodeSource deb repository
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_8.x jessie main
+    state: present
+    filename: 'node'
+  become: true
+
+- name: Import the NodeSource GPG key into apt
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
 - name: install packages
   apt: name={{ item }} update_cache=yes force=yes
   with_items:
     - nginx
+    - nodejs
     - curl
     - git
-    - npm
     - net-tools
-    - nodejs
   become: yes
   notify:
     - restart nginx
@@ -20,30 +31,33 @@
 # Clone repository
 - name: clone repositories
   git:
-   repo: "https://github.com/tuanpembual/blankon-linux-static-web.git"
-   dest: "home/hello"
-   version: "v1.0"
+    repo: "https://github.com/tuanpembual/blankon-linux-static-web.git"
+    dest: "/home/hello"
+    version: "v1.0"
+  become: yes
 
-# Symlink nodejs
-- name: Symplink nodejs
-  file:
-    src: /usr/bin/nodejs
-    dest: /usr/bin/node
-    owner: root
-    group: root
-    state: link
 
 # Install Npm
 - name: Install NPM
   npm:
-    path: "home/hello"
+    path: "/home/hello"
+  become: yes
 
 # Npm run build
 - name: Npm run build
-  command: home/hello npm run build
+  command: npm run build
   args:
-    chdir: "home/hello/dist"
-    creates: "home/hello/dist"
+    chdir: "/home/hello"
+    creates: "/home/hello/dist"
+  become: yes
 
-#Mengganti isi sites-available nginx
-
+# Change file sefault nginx
+- name: Copy file into default nginx
+  copy:
+    src: files/default
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart nginx

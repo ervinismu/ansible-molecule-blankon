@@ -14,7 +14,7 @@ driver_config:
     vm_name: nginx
   platforms:
   - box: debian/jessie64
-    box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.7.0/providers/virtualbox.box
+    box_url: https://vagrantcloud.com/debian/boxes/jessie64/versions/8.8.0/providers/virtualbox.box
     name: debian/jessie64
   providers:
   - name: virtualbox
