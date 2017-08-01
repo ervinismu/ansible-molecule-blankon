@@ -52,3 +52,7 @@ hosts file need create manual, and make sure public key configured
 ## Documentations
 * https://github.com/metacloud/molecule
 * https://molecule.readthedocs.io
+
+## Documentations video klik link :
+* https://youtu.be/LPn2yEiloIs Deploy to server Digital Ocean with ansible-playbook
+* https://youtu.be/TVTxw7YGmq8 Testing Provision Role with Ansible and Molecule
